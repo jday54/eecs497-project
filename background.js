@@ -5,7 +5,7 @@ function onClickHandler(info) {
         // alert("Hello from your Chrome extension!") 
 
         let text = info.selectionText;
-        chrome.storage.sync.set({text: "lul"}, function() {
+        chrome.storage.sync.set({[text]: "lul"}, function() {
             alert("Storage sync called with " + text);
             console.log("text stored:" + text);
         });

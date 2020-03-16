@@ -17,6 +17,7 @@ constructOptions(kButtonColors);
 
 chrome.storage.sync.get(null, function(items) {
   var allKeys = Object.keys(items);
+  // alert(allKeys["text"])
   console.log(allKeys);
 });
 
