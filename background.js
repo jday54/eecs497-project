@@ -3,8 +3,9 @@
 
 // context menu
 function onClickHandler(){
-    alert("Hello from your Chrome extension!") 
+    // alert("Hello from your Chrome extension!") 
     chrome.storage.sync.set({"Value": "shit"}, function() {
+        alert("Storage sync called")
         console.log('Value is set to ' + "shit");
     });
 }
