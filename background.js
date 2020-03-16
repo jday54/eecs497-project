@@ -1,10 +1,10 @@
+'use strict';
 chrome.runtime.onInstalled.addListener(function() {
     chrome.storage.sync.set({color: '#FF7373'}, function() {
       console.log("The color is blue.");
     });
 });
 
-'use strict';
 chrome.runtime.onInstalled.addListener(function() {
     chrome.contextMenus.create({
         id: "memorizer_id",
