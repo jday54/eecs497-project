@@ -23,6 +23,24 @@ chrome.storage.sync.get(null, function(items) {
   console.log(allKeys);
 });
 
+chrome.storage.sync.get(null, function(items) {
+  var allKeys = Object.keys(items);
+  // create a new div element 
+  var newDiv = document.createElement("div"); 
+  // give it some content
+  for (let item of Object.values(allKeys)) {
+    var newContent = document.createTextNode(item);
+    console.log(item); 
+    // add the text node to the newly created div
+    newDiv.appendChild(newContent);
+  };
+  // add the newly created element and its content into the DOM 
+  var currentDiv = document.getElementById("buttonDiv"); 
+  document.body.insertBefore(newDiv, currentDiv);   
+  console.log(allKeys);
+});
+
+
 // function listText() {
 //   for (let i=0; i<allKeys.length; i++) {
 //   // for (let item of allKeys) {
