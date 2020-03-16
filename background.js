@@ -1,9 +1,24 @@
 'use strict';
-chrome.runtime.onInstalled.addListener(function() {
-    chrome.storage.sync.set({color: '#FF7373'}, function() {
-      console.log("The color is blue.");
-    });
-});
+
+
+// context menu
+function onClickHandler(){
+    alert("Hello from your Chrome extension!") 
+    // todo store that shit
+}
+
+chrome.contextMenus.onClicked.addListener(onClickHandler);
+
+// // first run
+// chrome.runtime.onInstalled.addListener( function(details) {
+
+//   contexts = ["page","selection","link", "image"];
+//   for (var i = 0; i < contexts.length; i++) {
+//   	var context = contexts[i];
+//   	var title = "Share " + context + " on Twitter";
+//   	chrome.contextMenus.create({"title": title, "contexts":[context], "id": "tweet-"+context});
+//   }
+// });
 
 chrome.runtime.onInstalled.addListener(function() {
     chrome.contextMenus.create({
