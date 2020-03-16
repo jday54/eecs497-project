@@ -4,8 +4,12 @@
 // context menu
 function onClickHandler(){
     alert("Hello from your Chrome extension!") 
-    // todo store that shit
+    chrome.storage.sync.set({"Value": "shit"}, function() {
+        console.log('Value is set to ' + "shit");
+    });
 }
+
+
 
 chrome.contextMenus.onClicked.addListener(onClickHandler);
 
