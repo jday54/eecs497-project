@@ -15,10 +15,29 @@ function constructOptions(kButtonColors) {
 }
 constructOptions(kButtonColors);
 
+let allKeys;
 chrome.storage.sync.get(null, function(items) {
-  var allKeys = Object.keys(items);
+  allKeys = Object.keys(items);
+  console.log(typeof allKeys);
+  console.log(typeof kButtonColors);
   console.log(allKeys);
 });
+
+function listText() {
+  for (let i=0; i<allKeys.length; i++) {
+  // for (let item of allKeys) {
+    let div = document.createElement('div');
+    div.innerHTML = allKeys[i];
+    // button.addEventListener('click', function() {
+    //   chrome.storage.sync.set({color: item}, function() {
+    //     console.log('color is ' + item);
+    //   })
+    // });
+    page.appendChild(div);
+  }
+}
+listText();
+
 
 // chrome.storage.sync.get(['Value'], function(result) {
 //   alert('Value currently is ' + result["Value"]);
