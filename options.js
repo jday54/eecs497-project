@@ -23,20 +23,20 @@ chrome.storage.sync.get(null, function(items) {
   console.log(allKeys);
 });
 
-function listText() {
-  for (let i=0; i<allKeys.length; i++) {
-  // for (let item of allKeys) {
-    let div = document.createElement('div');
-    div.innerHTML = allKeys[i];
-    // button.addEventListener('click', function() {
-    //   chrome.storage.sync.set({color: item}, function() {
-    //     console.log('color is ' + item);
-    //   })
-    // });
-    page.appendChild(div);
-  }
-}
-listText();
+// function listText() {
+//   for (let i=0; i<allKeys.length; i++) {
+//   // for (let item of allKeys) {
+//     let div = document.createElement('div');
+//     div.innerHTML = allKeys[i];
+//     // button.addEventListener('click', function() {
+//     //   chrome.storage.sync.set({color: item}, function() {
+//     //     console.log('color is ' + item);
+//     //   })
+//     // });
+//     page.appendChild(div);
+//   }
+// }
+// listText();
 
 
 // chrome.storage.sync.get(['Value'], function(result) {
