@@ -15,6 +15,11 @@ function constructOptions(kButtonColors) {
 }
 constructOptions(kButtonColors);
 
-chrome.storage.sync.get(['Value'], function(result) {
-  alert('Value currently is ' + result["Value"]);
+chrome.storage.sync.get(null, function(items) {
+  var allKeys = Object.keys(items);
+  console.log(allKeys);
 });
+
+// chrome.storage.sync.get(['Value'], function(result) {
+//   alert('Value currently is ' + result["Value"]);
+// });
