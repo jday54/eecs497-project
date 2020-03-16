@@ -15,11 +15,47 @@ function constructOptions(kButtonColors) {
 }
 constructOptions(kButtonColors);
 
+let allKeys;
 chrome.storage.sync.get(null, function(items) {
-  var allKeys = Object.keys(items);
-  // alert(allKeys["text"])
+  allKeys = Object.keys(items);
+  console.log(typeof allKeys);
+  console.log(typeof kButtonColors);
   console.log(allKeys);
 });
+
+chrome.storage.sync.get(null, function(items) {
+  var allKeys = Object.keys(items);
+  // create a new div element 
+  var newDiv = document.createElement("div"); 
+  // give it some content
+  for (let item of Object.values(allKeys)) {
+    var newContent = document.createTextNode(item);
+    console.log(item); 
+    // add the text node to the newly created div
+    newDiv.appendChild(newContent);
+  };
+  // add the newly created element and its content into the DOM 
+  var currentDiv = document.getElementById("buttonDiv"); 
+  document.body.insertBefore(newDiv, currentDiv);   
+  console.log(allKeys);
+});
+
+
+// function listText() {
+//   for (let i=0; i<allKeys.length; i++) {
+//   // for (let item of allKeys) {
+//     let div = document.createElement('div');
+//     div.innerHTML = allKeys[i];
+//     // button.addEventListener('click', function() {
+//     //   chrome.storage.sync.set({color: item}, function() {
+//     //     console.log('color is ' + item);
+//     //   })
+//     // });
+//     page.appendChild(div);
+//   }
+// }
+// listText();
+
 
 // chrome.storage.sync.get(['Value'], function(result) {
 //   alert('Value currently is ' + result["Value"]);
