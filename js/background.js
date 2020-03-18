@@ -2,8 +2,6 @@
 
 function onClickHandler(info) {
     if (info.menuItemId == "memorizer") {
-        // alert("Hello from your Chrome extension!") 
-
         let text = info.selectionText;
         chrome.storage.sync.set({[text]: "lul"}, function() {
             alert("Storage sync called with " + text);
@@ -23,3 +21,13 @@ chrome.runtime.onInstalled.addListener(function() {
 });
 
 //code for sending alerts
+chrome.tabs.onCreated.addListener(function() {
+    chrome.storage.sync.get(null, function(items) {
+        var allKeys = Object.keys(items);
+        for (let [date,text] of Object.entries(allKeys)) {
+            if ((today.getDate() - date) > threshold) {
+                console.log("Reminder sent" + item)
+            }
+        }
+    });
+});
