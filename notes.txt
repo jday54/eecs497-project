@@ -4,8 +4,8 @@ react/material theme
 keyboard command to record next thing
 
 split the js and css into different files
-put in react
 put in actual memorizer alert
+put in react
 
 
 https://superuser.com/questions/179347/can-i-add-right-click-options-in-google-chrome?fbclid=IwAR0Y_6bescd6W49gaH2pfZMs6qoQkyfbBOERrGMfeMKru14QEvl1rwArSlY
