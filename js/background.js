@@ -35,6 +35,9 @@ chrome.tabs.onCreated.addListener(function() {
                 console.log("Reminder sent " + text);
                 alert("Reminder sent " + text);
             }
+            else {
+                // alert("nope");
+            }
         }
     });
 });
