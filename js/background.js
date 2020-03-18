@@ -5,7 +5,8 @@ function onClickHandler(info) {
         let text = info.selectionText;
         var date = new Date().getTime();
         chrome.storage.sync.set({[text]: date}, function() {
-            alert("Storage sync called with " + text);
+            alert("You have selected --" + text + " to memorize!")
+            console.log("Storage sync called with " + text);
             console.log("text stored:" + text);
             console.log("date stored:" + date);
         });
@@ -20,24 +21,27 @@ chrome.runtime.onInstalled.addListener(function() {
         title: "Memorizer",
         contexts: ["selection"]
     });
+    chrome.storage.sync.set({"threshold": 1000*500});
+    // var decks = Set()
 });
 
 chrome.tabs.onCreated.addListener(function() {
     chrome.storage.sync.get(null, function(items) {
         console.log("Checking terms to memorize.")
-        var threshold = 1000*5;
-        var allKeys = Object.keys(items);
+        var threshold = 1000 * 10;
+        // var threshold = chrome.storage.sync.get()
         console.log("Here: " + Object.entries(items));
         for (let [text,date] of Object.entries(items)) {
-            alert("text: "+ text + " | date: " + date);
+            // alert("text: "+ text + " | date: " + date);
             var current_date = new Date().getTime();
             if ((current_date - date) > threshold) {
                 console.log("Reminder sent " + text);
                 alert("Reminder sent " + text);
             }
             else {
-                // alert("nope");
+                alert("Not enough time elapsed for: " + text);
             }
         }
     });
 });
+
