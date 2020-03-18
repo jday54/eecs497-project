@@ -15,46 +15,34 @@ function constructOptions(kButtonColors) {
 }
 constructOptions(kButtonColors);
 
-let allKeys;
-chrome.storage.sync.get(null, function(items) {
-  allKeys = Object.keys(items);
-  console.log(typeof allKeys);
-  console.log(typeof kButtonColors);
-  console.log(allKeys);
-});
-
 chrome.storage.sync.get(null, function(items) {
   var allKeys = Object.keys(items);
   // create a new div element 
-  var newDiv = document.createElement("div"); 
+  var titleLine = document.getElementById("titleLine");
+  titleLine.innerHTML = "You have " + allKeys.length.toString() + " things to memorize";
+
+  var list_head = document.createElement("ul"); 
   // give it some content
   for (let item of Object.values(allKeys)) {
-    var newContent = document.createTextNode(item);
+    var newListElem = document.createElement("li");
+    newListElem.innerHTML = item;
     console.log(item); 
     // add the text node to the newly created div
-    newDiv.appendChild(newContent);
+    list_head.appendChild(newListElem);
   };
   // add the newly created element and its content into the DOM 
-  var currentDiv = document.getElementById("buttonDiv"); 
-  document.body.insertBefore(newDiv, currentDiv);   
+  var resetButton = document.getElementById("reset_button"); 
+  document.body.insertBefore(list_head, resetButton);   
   console.log(allKeys);
 });
 
+var clear_button = document.getElementById("reset_button");
+clear_button.addEventListener('click', function() {
+  chrome.storage.sync.clear(function() {
+    console.log("all items cleared");
+  })
+});
 
-// function listText() {
-//   for (let i=0; i<allKeys.length; i++) {
-//   // for (let item of allKeys) {
-//     let div = document.createElement('div');
-//     div.innerHTML = allKeys[i];
-//     // button.addEventListener('click', function() {
-//     //   chrome.storage.sync.set({color: item}, function() {
-//     //     console.log('color is ' + item);
-//     //   })
-//     // });
-//     page.appendChild(div);
-//   }
-// }
-// listText();
 
 
 // chrome.storage.sync.get(['Value'], function(result) {
