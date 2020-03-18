@@ -37,10 +37,10 @@
     "48": "images/icon_48.png",
     "128": "images/icon_128.png"
   },
-  "options_page": "options.html",
+  "options_page": "html/options.html",
   "browser_action": {
     "default_icon": "icon.png",
     "default_title": "Memorizer",      
-    "default_popup": "popup.html"        
+    "default_popup": "html/popup.html"        
   }
 }

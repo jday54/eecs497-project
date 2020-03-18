@@ -21,3 +21,5 @@ chrome.runtime.onInstalled.addListener(function() {
         contexts: ["selection"]
     });
 });
+
+//code for sending alerts
