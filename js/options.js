@@ -48,6 +48,7 @@ function addFields(){
   // while (container.hasChildNodes()) {
   //     container.removeChild(container.lastChild);
   // }
+  console.log(number);
   for (i=0;i<number;i++){
       // Append a node with a random text
       // container.appendChild(document.createTextNode("Member " + (i+1)));
@@ -59,8 +60,9 @@ function addFields(){
       // // Append a line break 
       // container.appendChild(document.createElement("br"));
       container.appendChild(document.createTextNode("Member"));
-    }
+  }
 }
+addFields();
 
 var clear_button = document.getElementById("reset_button");
 clear_button.addEventListener('click', function() {
