@@ -25,6 +25,7 @@ chrome.runtime.onInstalled.addListener(function() {
     // var decks = Set()
 });
 
+// Check to send reminders
 chrome.tabs.onCreated.addListener(function() {
     chrome.storage.sync.get(null, function(items) {
         console.log("Checking terms to memorize.")
