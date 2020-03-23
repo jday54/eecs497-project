@@ -34,37 +34,14 @@ chrome.storage.sync.get(null, function(items) {
     list_head.appendChild(newListElem);
   };
   // add the newly created element and its content into the DOM 
-  var resetButton = document.getElementById("reset_button"); 
+  var resetButton = document.getElementById("resetButton"); 
   document.body.insertBefore(list_head, resetButton);   
   console.log(allKeys);
 });
 
-function addFields(){
-  // Number of inputs to create
-  var number = Object.keys(items).length;
-  // Container <div> where dynamic content will be placed
-  var container = document.getElementById("container");
-  // Clear previous contents of the container
-  // while (container.hasChildNodes()) {
-  //     container.removeChild(container.lastChild);
-  // }
-  console.log(number);
-  for (i=0;i<number;i++){
-      // Append a node with a random text
-      // container.appendChild(document.createTextNode("Member " + (i+1)));
-      // // Create an <input> element, set its type and name attributes
-      // var input = document.createElement("input");
-      // input.type = "text";
-      // input.name = "member" + i;
-      // container.appendChild(input);
-      // // Append a line break 
-      // container.appendChild(document.createElement("br"));
-      container.appendChild(document.createTextNode("Member"));
-  }
-}
-addFields();
+https://stackoverflow.com/questions/14853779/adding-input-elements-dynamically-to-form
 
-var clear_button = document.getElementById("reset_button");
+var clear_button = document.getElementById("resetButton");
 clear_button.addEventListener('click', function() {
   chrome.storage.sync.clear(function() {
     console.log("all items cleared");
