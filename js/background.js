@@ -4,7 +4,7 @@ function onClickHandler(info) {
     if (info.menuItemId == "memorizer") {
         let text = info.selectionText;
         var date = new Date().getTime();
-        chrome.storage.sync.set({[text]: date}, function() {
+        chrome.storage.sync.set({date: notecard}, function() {
             alert("You have selected --" + text + " to memorize!")
             console.log("Storage sync called with " + text);
             console.log("text stored:" + text);
