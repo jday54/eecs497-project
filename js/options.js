@@ -3,26 +3,26 @@
 
 let page = document.getElementById('buttonDiv');
 
-const kButtonColors = ['#3aa757', '#e8453c', '#f9bb2d', '#4688f1'];
-function constructOptions(kButtonColors) {
-  for (let item of kButtonColors) {
-    let button = document.createElement('button');
-    button.style.backgroundColor = item;
-    button.addEventListener('click', function() {
-      chrome.storage.sync.set({color: item}, function() {
-        console.log('color is ' + item);
-      })
-    });
-    page.appendChild(button);
-  }
-}
-constructOptions(kButtonColors);
+// const kButtonColors = ['#3aa757', '#e8453c', '#f9bb2d', '#4688f1'];
+// function constructOptions(kButtonColors) {
+//   for (let item of kButtonColors) {
+//     let button = document.createElement('button');
+//     button.style.backgroundColor = item;
+//     button.addEventListener('click', function() {
+//       chrome.storage.sync.set({color: item}, function() {
+//         console.log('color is ' + item);
+//       })
+//     });
+//     page.appendChild(button);
+//   }
+// }
+// constructOptions(kButtonColors);
 
 chrome.storage.sync.get(null, function(items) {
   var allKeys = Object.keys(items);
   // create a new div element 
-  var titleLine = document.getElementById("titleLine");
-  titleLine.innerHTML = "You have " + allKeys.length.toString() + " things to memorize";
+  var numMemorize = document.getElementById("titleLine");
+  numMemorize.innerHTML = "You have " + allKeys.length.toString() + " things to memorize";
 
   var list_head = document.createElement("ul"); 
   // give it some content
@@ -34,20 +34,17 @@ chrome.storage.sync.get(null, function(items) {
     list_head.appendChild(newListElem);
   };
   // add the newly created element and its content into the DOM 
-  var resetButton = document.getElementById("reset_button"); 
+  var resetButton = document.getElementById("resetButton"); 
   document.body.insertBefore(list_head, resetButton);   
   console.log(allKeys);
 });
 
-var clear_button = document.getElementById("reset_button");
+https://stackoverflow.com/questions/14853779/adding-input-elements-dynamically-to-form
+
+var clear_button = document.getElementById("resetButton");
 clear_button.addEventListener('click', function() {
   chrome.storage.sync.clear(function() {
     console.log("all items cleared");
   })
 });
 
-
-
-// chrome.storage.sync.get(['Value'], function(result) {
-//   alert('Value currently is ' + result["Value"]);
-// });
