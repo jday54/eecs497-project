@@ -42,3 +42,12 @@
     margin-bottom: 20px;
     text-align: center;
 }
+
+.thresholdBox {
+    width: 40%;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-family: roboto;
+    text-align: center;
+}
