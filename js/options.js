@@ -40,8 +40,8 @@ chrome.storage.sync.get(null, function(items) {
 
 https://stackoverflow.com/questions/14853779/adding-input-elements-dynamically-to-form
 
-var clear_button = document.getElementById("resetButton");
-clear_button.addEventListener('click', function() {
+var resetButton = document.getElementById("resetButton");
+resetButton.addEventListener('click', function() {
   chrome.storage.sync.clear(function() {
     console.log("all items cleared");
   })
