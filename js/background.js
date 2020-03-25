@@ -7,7 +7,7 @@ chrome.runtime.onInstalled.addListener(function() {
         title: "Memorizer",
         contexts: ["selection"]
     });
-    chrome.storage.sync.set({"threshold": 1000*5}); // 5 seconds
+    chrome.storage.sync.set({"threshold": 1000*60}); // 5 seconds
     chrome.storage.sync.set({"notecards": {}});
     // var decks = Set()
 });
@@ -49,7 +49,7 @@ function updateTimerMultiplier(notecard_date) {
 
 // Check for terms to send reminder for upon new tab creation
 chrome.tabs.onCreated.addListener(function() {
-    chrome.storage.sync.get(['notecard','threshold'], function(result) {
+    chrome.storage.sync.get(['notecards','threshold'], function(result) {
         console.log("Checking for terms to memorize.")
         let notecards = result.notecards
         for (let [date, notecard] of Object.entries(notecards)) {

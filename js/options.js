@@ -64,5 +64,5 @@ var newThreshold = document.getElementById("changeThreshold");
 newThreshold.addEventListener('submit', function() {
   let newThresh = document.getElementById('threshAmt').value
   chrome.storage.sync.set({"threshold": newThresh * 60000});
-  alert("You will be reminded every " + newThresh + " minutes")
+  alert("You will be reminded every " + newThresh + " minute(s).")
 });
