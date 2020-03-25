@@ -18,29 +18,28 @@ let page = document.getElementById('buttonDiv');
 // }
 // constructOptions(kButtonColors);
 
-chrome.storage.sync.get({notecards : []}, function(items) {
-  var notecards = items.notecards
-  console.log("current number of notecards:", notecards.length.toString());
-  
-  // create a new div element
-  var numMemorize = document.getElementById("titleLine");
-  numMemorize.innerHTML = "You have " + notecards.length.toString() + " things to memorize";
+chrome.storage.sync.get(null, function(items) {
+  var allKeys = Object.keys(items);
+  // create a new div element 
+  console.log("here")
+  var numMemorize = document.getElementById("numMemorize");
+  numMemorize.innerHTML = "You have " + allKeys.length.toString() + " things to memorize";
 
   var list_head = document.createElement("ul"); 
   // give it some content
-  for (let notecard of notecards) {
+  for (let item of Object.values(allKeys)) {
     var newListElem = document.createElement("li");
-    newListElem.innerHTML = notecard.text;
-    console.log("newListItem notecard:", notecard); 
+    newListElem.innerHTML = item;
+    console.log(item); 
     // add the text node to the newly created div
     list_head.appendChild(newListElem);
   };
   // add the newly created element and its content into the DOM 
   var resetButton = document.getElementById("resetButton"); 
-  document.body.insertBefore(list_head, resetButton);   
+  document.body.insertBefore(list_head, resetButton.next);   
 });
 
-//https://stackoverflow.com/questions/14853779/adding-input-elements-dynamically-to-form
+https://stackoverflow.com/questions/14853779/adding-input-elements-dynamically-to-form
 
 var clear_button = document.getElementById("resetButton");
 clear_button.addEventListener('click', function() {
