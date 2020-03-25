@@ -27,10 +27,10 @@ chrome.storage.sync.get(null, function(items) {
 
   var list_head = document.createElement("ul"); 
   // give it some content
-  for (let item of Object.values(allKeys)) {
+  for (let notecard of notecards) {
     var newListElem = document.createElement("li");
-    newListElem.innerHTML = item;
-    console.log(item); 
+    newListElem.innerHTML = notecard.text;
+    console.log("newListItem notecard:", notecard); 
     // add the text node to the newly created div
     list_head.appendChild(newListElem);
   };
@@ -39,7 +39,7 @@ chrome.storage.sync.get(null, function(items) {
   document.body.insertBefore(list_head, resetButton);   
 });
 
-https://stackoverflow.com/questions/14853779/adding-input-elements-dynamically-to-form
+//https://stackoverflow.com/questions/14853779/adding-input-elements-dynamically-to-form
 
 var clear_button = document.getElementById("resetButton");
 clear_button.addEventListener('click', function() {
@@ -47,4 +47,3 @@ clear_button.addEventListener('click', function() {
     console.log("all items cleared");
   })
 });
-
