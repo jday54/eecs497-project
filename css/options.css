@@ -18,15 +18,27 @@
     width: 20%;
     margin: auto;
     margin-top: 20px;
-    margin-bottom: 20px;
     text-align: center;
     font-family: roboto;
+}
+
+.reviewList {
+    height: 10%;
+    width: 180px;
+    margin: auto;
+    margin-bottom: 35px;
+    text-align: center;
+    font-family: roboto;
+}
+
+.listElem {
+    padding: 1px;
 }
 
 .buttonDiv {
     width: 20%;
     margin: auto;
-    margin-top: 20px;
+    margin-top: 30px;
     margin-bottom: 20px;
     text-align: center;
 }
