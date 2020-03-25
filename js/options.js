@@ -35,8 +35,8 @@ chrome.storage.sync.get(null, function(items) {
     list_head.appendChild(newListElem);
   };
   // add the newly created element and its content into the DOM 
-  var resetButton = document.getElementById("resetButton_div"); 
-  resetButton.insertBefore(list_head, resetButton.nextSibling);   
+  var resetButton = document.getElementById("resetButtonDiv"); 
+  resetButton.insertBefore(list_head, document.getElementById("resetButton"));   
 });
 
 https://stackoverflow.com/questions/14853779/adding-input-elements-dynamically-to-form
@@ -46,4 +46,5 @@ clear_button.addEventListener('click', function() {
   chrome.storage.sync.clear(function() {
     console.log("all items cleared");
   })
+  window.location.reload();
 });
