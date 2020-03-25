@@ -15,7 +15,7 @@ chrome.runtime.onInstalled.addListener(function() {
 // Store highlighted text  
 function onClickHandler(info) {
     if (info.menuItemId == "memorizer") {
-        chrome.storage.sync.get({notecards : new Map()}, function(result){
+        chrome.storage.sync.get({notecards : {}}, function(result){
             let notecards = result.notecards;
             let date = new Date().getTime();
             let notecard = {"text" : info.selectionText, "date" : date, "times_reminded":0};

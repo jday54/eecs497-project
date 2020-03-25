@@ -18,19 +18,24 @@ let page = document.getElementById('buttonDiv');
 // }
 // constructOptions(kButtonColors);
 
-chrome.storage.sync.get(null, function(items) {
-  var allKeys = Object.keys(items);
+chrome.storage.sync.get({notecards : {}}, function(items) {
+  let notecards = items.notecards;
   // create a new div element 
   console.log("here")
   var numMemorize = document.getElementById("numMemorize");
-  numMemorize.innerHTML = "You have " + allKeys.length.toString() + " things to memorize";
+
+  let num_of_notecards = 0;
+  for (let [key, value] of Object.entries(notecards)) {
+    num_of_notecards = num_of_notecards + 1;
+  }
+  numMemorize.innerHTML = "You have " + num_of_notecards + " things to memorize";
 
   var list_head = document.createElement("ul"); 
   // give it some content
-  for (let item of Object.values(allKeys)) {
+  for (let notecard of Object.values(notecards)) {
     var newListElem = document.createElement("li");
-    newListElem.innerHTML = item;
-    console.log(item); 
+    newListElem.innerHTML = notecard.text;
+    console.log(notecard.text);
     // add the text node to the newly created div
     list_head.appendChild(newListElem);
   };
