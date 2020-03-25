@@ -21,7 +21,7 @@ function onClickHandler(info) {
             let notecard = {"text" : info.selectionText, "date" : date, "times_reminded":0};
             notecards[date] = notecard;
             chrome.storage.sync.set({'notecards':notecards}, function() {
-                alert("You have selected \" " + notecard.text + " \" to memorize!");
+                alert("You have selected \"" + notecard.text + "\" to memorize!");
                 console.log("Storage sync called with notecard:", notecard);
                 // ---For Debugging---
                 console.log("Current state of notecards (in no particular order):");
