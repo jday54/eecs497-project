@@ -37,10 +37,13 @@ function onClickHandler(info) {
 // Run onClickHandler when context menu item is selected
 chrome.contextMenus.onClicked.addListener(onClickHandler);
 
-function updateTimesReminded(info) {
+function updateTimesReminded(notecard_date) {
     chrome.storage.sync.get({notecards : []}, function(result){
         let notecards = result.notecards;
-        console.log("ERROR: NOT IMPLEMENTED");
+        notecards[notecard_date].times_reminded += 1;
+        chrome.storage.sync.set({'notecards':notecards}, function() {
+            console.log("Times reminded updated: ", notecards[notecard_date].times_reminded);
+        });
     });
 };
 
@@ -48,14 +51,12 @@ function updateTimesReminded(info) {
 chrome.tabs.onCreated.addListener(function() {
     chrome.storage.sync.get(['notecards','threshold'], function(result) {
         console.log("Checking for terms to memorize.")
-        var threshold = result.threshold
         let notecards = result.notecards
         for (let [date, notecard] of Object.entries(notecards)) {
-            // alert("text: "+ text + " | date: " + date);
+            let threshold = result.threshold * (parseInt(notecard.times_reminded) + 1);
             let current_date = new Date().getTime();
             if ((current_date - notecard.date) > threshold) {
-                // TODO: update times_reminded for notecard
-                updateTimesReminded();
+                updateTimesReminded(notecard.date);
                 alert("Reminder to memorize: " + notecard.text);
                 console.log("Reminder sent for: " + notecard.text);
             }
