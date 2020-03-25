@@ -23,6 +23,12 @@
     font-family: roboto;
 }
 
+.reviewList {
+    width: 20%;
+    text-align: center;
+    font-family: roboto;
+}
+
 .buttonDiv {
     width: 20%;
     margin: auto;
