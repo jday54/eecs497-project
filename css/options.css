@@ -24,8 +24,9 @@
 
 .reviewList {
     height: 10%;
-    width: 40%;
+    width: 100%;
     margin: auto;
+    margin-left: -10%;
     margin-bottom: 35px;
     text-align: center;
     font-family: roboto;
