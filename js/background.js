@@ -37,7 +37,7 @@ function onClickHandler(info) {
 // Run onClickHandler when context menu item is selected
 chrome.contextMenus.onClicked.addListener(onClickHandler);
 
-function updateTimesReminded(notecard_date) {
+function updateTimerMultiplier(notecard_date) {
     chrome.storage.sync.get({notecards : []}, function(result){
         let notecards = result.notecards;
         notecards[notecard_date].timer_multiplier *= 2;
@@ -56,7 +56,7 @@ chrome.tabs.onCreated.addListener(function() {
             let threshold = result.threshold * (parseInt(notecard.timer_multiplier));
             let current_date = new Date().getTime();
             if ((current_date - notecard.date) > threshold) {
-                updateTimesReminded(notecard.date);
+                updateTimerMultiplier(notecard.date);
                 alert("Reminder to memorize: " + notecard.text);
                 console.log("Reminder sent for: " + notecard.text);
             }
