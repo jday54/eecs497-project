@@ -40,11 +40,11 @@ chrome.storage.sync.get({notecards : {}}, function(items) {
     listHead.appendChild(newListElem);
   };
   // add the newly created element and its content into the DOM 
-  var resetButton = document.getElementById("resetButtonDiv"); 
-  resetButton.insertBefore(listHead, document.getElementById("resetButton"));   
+  var resetButton = document.getElementById("resetButtonDiv");
+  resetButton.insertBefore(listHead, document.getElementById("resetButton"));
 });
 
-https://stackoverflow.com/questions/14853779/adding-input-elements-dynamically-to-form
+// https://stackoverflow.com/questions/14853779/adding-input-elements-dynamically-to-form
 
 var resetButton = document.getElementById("resetButton");
 resetButton.addEventListener('click', function() {
@@ -52,4 +52,11 @@ resetButton.addEventListener('click', function() {
     console.log("all items cleared");
   })
   window.location.reload();
+});
+
+var newThreshold = document.getElementById("changeThresh");
+newThreshold.addEventListener('submit', function() {
+  let newThresh = document.getElementById('threshInput').value
+  chrome.storage.sync.set({"threshold": newThresh * 60000});
+  alert("You will be reminded every " + newThresh + " minutes")
 });
