@@ -51,13 +51,7 @@ chrome.storage.sync.get({notecards : {}}, function(items) {
 
 var resetButton = document.getElementById("resetButton");
 resetButton.addEventListener('click', function() {
-  // chrome.storage.sync.clear(function() {
-  //   console.log("all items cleared");
-  // })
-  
   chrome.storage.sync.set({"notecards": {}});
-  alert(chrome.storage.sync.get('threshold'));
-
   window.location.reload();
 });
 
