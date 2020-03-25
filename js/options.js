@@ -21,7 +21,6 @@ let page = document.getElementById('buttonDiv');
 chrome.storage.sync.get(null, function(items) {
   var allKeys = Object.keys(items);
   // create a new div element 
-  console.log("here")
   var numMemorize = document.getElementById("numMemorize");
   numMemorize.innerHTML = "You have " + allKeys.length.toString() + " things to memorize";
 
