@@ -34,6 +34,7 @@ chrome.storage.sync.get({notecards : {}}, function(items) {
   // give it some content
   for (let notecard of Object.values(notecards)) {
     var newListElem = document.createElement("li");
+    newListElem.setAttribute('class', 'listElem');
     newListElem.innerHTML = notecard.text;
     console.log(notecard.text);
     // add the text node to the newly created div
