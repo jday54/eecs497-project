@@ -49,7 +49,7 @@ function updateTimerMultiplier(notecard_date) {
 
 // Check for terms to send reminder for upon new tab creation
 chrome.tabs.onCreated.addListener(function() {
-    chrome.storage.sync.get(['notecards','threshold'], function(result) {
+    chrome.storage.sync.get({'notecards':{},'threshold':5000}, function(result) {
         console.log("Checking for terms to memorize.")
         let notecards = result.notecards
         for (let [date, notecard] of Object.entries(notecards)) {
