@@ -24,7 +24,7 @@
 
 .reviewList {
     height: 10%;
-    width: 180px;
+    width: 40%;
     margin: auto;
     margin-bottom: 35px;
     text-align: center;
@@ -46,7 +46,7 @@
 .thresholdBox {
     width: 180px;
     margin: auto;
-    margin-top: 18%;
+    margin-top: 8%;
     margin-bottom: 10px;
     font-family: roboto;
     text-align: center;

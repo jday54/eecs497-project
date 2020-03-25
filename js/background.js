@@ -7,7 +7,7 @@ chrome.runtime.onInstalled.addListener(function() {
         title: "Memorizer",
         contexts: ["selection"]
     });
-    chrome.storage.sync.set({"threshold": 1000*60}); // 5 seconds
+    chrome.storage.sync.set({"threshold": 1000*5}); // 5 seconds
     chrome.storage.sync.set({"notecards": {}});
     // var decks = Set()
 });
@@ -53,6 +53,7 @@ chrome.tabs.onCreated.addListener(function() {
         console.log("Checking for terms to memorize.")
         let notecards = result.notecards
         for (let [date, notecard] of Object.entries(notecards)) {
+            console.log(result.threshold)
             let threshold = result.threshold * (parseInt(notecard.timer_multiplier));
             let current_date = new Date().getTime();
             if ((current_date - notecard.date) > threshold) {
