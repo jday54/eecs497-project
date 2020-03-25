@@ -35,7 +35,7 @@ chrome.storage.sync.get(null, function(items) {
     list_head.appendChild(newListElem);
   };
   // add the newly created element and its content into the DOM 
-  var resetButton = document.getElementById("resetButton_div"); 
+  var resetButton = document.getElementById("resetButton"); 
   document.body.insertBefore(list_head, resetButton);   
 });
 
@@ -47,4 +47,3 @@ clear_button.addEventListener('click', function() {
     console.log("all items cleared");
   })
 });
-
