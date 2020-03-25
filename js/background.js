@@ -18,7 +18,7 @@ function onClickHandler(info) {
         chrome.storage.sync.get({notecards : {}}, function(result){
             let notecards = result.notecards;
             let date = new Date().getTime();
-            let notecard = {"text" : info.selectionText, "date" : date, "times_reminded":0};
+            let notecard = {"text" : info.selectionText, "date" : date, "timer_multiplier":1};
             notecards[date] = notecard;
             chrome.storage.sync.set({'notecards':notecards}, function() {
                 alert("You have selected \"" + notecard.text + "\" to memorize!");
@@ -40,9 +40,9 @@ chrome.contextMenus.onClicked.addListener(onClickHandler);
 function updateTimesReminded(notecard_date) {
     chrome.storage.sync.get({notecards : []}, function(result){
         let notecards = result.notecards;
-        notecards[notecard_date].times_reminded += 1;
+        notecards[notecard_date].timer_multiplier *= 2;
         chrome.storage.sync.set({'notecards':notecards}, function() {
-            console.log("Times reminded updated: ", notecards[notecard_date].times_reminded);
+            console.log("Timer multiplier updated: ", notecards[notecard_date].timer_multiplier);
         });
     });
 };
@@ -53,7 +53,7 @@ chrome.tabs.onCreated.addListener(function() {
         console.log("Checking for terms to memorize.")
         let notecards = result.notecards
         for (let [date, notecard] of Object.entries(notecards)) {
-            let threshold = result.threshold * (parseInt(notecard.times_reminded) + 1);
+            let threshold = result.threshold * (parseInt(notecard.timer_multiplier));
             let current_date = new Date().getTime();
             if ((current_date - notecard.date) > threshold) {
                 updateTimesReminded(notecard.date);
