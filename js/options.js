@@ -21,7 +21,6 @@ let page = document.getElementById('buttonDiv');
 chrome.storage.sync.get({notecards : {}}, function(items) {
   let notecards = items.notecards;
   // create a new div element 
-  console.log("here")
   var numMemorize = document.getElementById("numMemorize");
 
   let num_of_notecards = 0;
