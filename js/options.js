@@ -21,7 +21,8 @@ let page = document.getElementById('buttonDiv');
 chrome.storage.sync.get(null, function(items) {
   var allKeys = Object.keys(items);
   // create a new div element 
-  var numMemorize = document.getElementById("titleLine");
+  console.log("here")
+  var numMemorize = document.getElementById("numMemorize");
   numMemorize.innerHTML = "You have " + allKeys.length.toString() + " things to memorize";
 
   var list_head = document.createElement("ul"); 
@@ -34,9 +35,8 @@ chrome.storage.sync.get(null, function(items) {
     list_head.appendChild(newListElem);
   };
   // add the newly created element and its content into the DOM 
-  var resetButton = document.getElementById("resetButton"); 
+  var resetButton = document.getElementById("resetButton_div"); 
   document.body.insertBefore(list_head, resetButton);   
-  console.log(allKeys);
 });
 
 https://stackoverflow.com/questions/14853779/adding-input-elements-dynamically-to-form
