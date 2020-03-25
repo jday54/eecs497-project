@@ -57,9 +57,14 @@ resetButton.addEventListener('click', function() {
   window.location.reload();
 });
 
-var newThreshold = document.getElementById("changeThresh");
+chrome.storage.sync.get('threshold', function(items) {
+  threshold = items.threshold
+  document.getElementById('threshAmt').value = threshold / 60000
+});
+
+var newThreshold = document.getElementById("changeThreshold");
 newThreshold.addEventListener('submit', function() {
-  let newThresh = document.getElementById('threshInput').value
+  let newThresh = document.getElementById('threshAmt').value
   chrome.storage.sync.set({"threshold": newThresh * 60000});
   alert("You will be reminded every " + newThresh + " minutes")
 });
