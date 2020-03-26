@@ -17,9 +17,9 @@ function onClickHandler(info) {
     if (info.menuItemId == "memorizer") {
         chrome.storage.sync.get({notecards : {}}, function(result){
             let notecards = result.notecards;
-            let date = new Date().getTime();
-            let notecard = {"text" : info.selectionText, "date" : date, "timer_multiplier":1};
-            notecards[date] = notecard;
+            let add_date = new Date().getTime();
+            let notecard = {"text" : info.selectionText, "add_date" : add_date, "timer_multiplier" : 1, "last_reminder_date" : add_date};
+            notecards[add_date] = notecard;
             chrome.storage.sync.set({'notecards':notecards}, function() {
                 alert("You have selected \"" + notecard.text + "\" to memorize!");
                 console.log("Storage sync called with notecard:", notecard);
@@ -37,12 +37,16 @@ function onClickHandler(info) {
 // Run onClickHandler when context menu item is selected
 chrome.contextMenus.onClicked.addListener(onClickHandler);
 
-function updateTimerMultiplier(notecard_date) {
+// Update last_reminder_date and time_multiplier for specified notecard
+function updateNotecard(add_date) {
     chrome.storage.sync.get({notecards : []}, function(result){
         let notecards = result.notecards;
-        notecards[notecard_date].timer_multiplier *= 2;
+        notecards[add_date].last_reminder_date = new Date().getTime();
+        notecards[add_date].timer_multiplier *= 2;
         chrome.storage.sync.set({'notecards':notecards}, function() {
-            console.log("Timer multiplier updated: ", notecards[notecard_date].timer_multiplier);
+            console.log("For notecard: ", add_date);
+            console.log("-- last reminder date updated: ", notecards[add_date].last_reminder_date);
+            console.log("-- timer multiplier updated: ", notecards[add_date].timer_multiplier);
         });
     });
 };
@@ -52,12 +56,12 @@ chrome.tabs.onCreated.addListener(function() {
     chrome.storage.sync.get({'notecards':{},'threshold':5000}, function(result) {
         console.log("Checking for terms to memorize.")
         let notecards = result.notecards
-        for (let [date, notecard] of Object.entries(notecards)) {
-            console.log(result.threshold)
+        for (let [add_date, notecard] of Object.entries(notecards)) {
             let threshold = result.threshold * (parseInt(notecard.timer_multiplier));
+            console.log("Computed threshold: ",threshold)
             let current_date = new Date().getTime();
-            if ((current_date - notecard.date) > threshold) {
-                updateTimerMultiplier(notecard.date);
+            if ((current_date - notecard.last_reminder_date) > threshold) {
+                updateNotecard(add_date);
                 alert("Reminder to memorize: " + notecard.text);
                 console.log("Reminder sent for: " + notecard.text);
             }
