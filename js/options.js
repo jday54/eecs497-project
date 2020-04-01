@@ -37,7 +37,8 @@ chrome.storage.sync.get({notecards : {}}, function(items) {
     //create checkbox element
     var i = document.createElement("input");
     i.type = "checkbox";
-    i.id = notecard.text + "~" + notecard.add_date.toString();
+    i.value = notecard.text;
+    i.id = notecard.text + notecard.add_date.toString();
 
     var l = document.createElement("l");
     l.for = notecard.text + notecard.add_date.toString();
