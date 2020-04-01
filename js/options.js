@@ -50,13 +50,25 @@ chrome.storage.sync.get({notecards : {}}, function(items) {
   };
 
   // add the newly created element and its content into the DOM 
-  var resetButton = document.getElementById("resetButtonDiv");
-  resetButton.insertBefore(listHead, document.getElementById("resetButton"));
+  // var resetButton = document.getElementById("resetButtonDiv");
+  // resetButton.insertBefore(listHead, document.getElementById("resetButton"));
 });
 
 var resetButton = document.getElementById("resetButton");
 resetButton.addEventListener('click', function() {
   chrome.storage.sync.set({"notecards": {}});
+  window.location.reload();
+});
+
+var deleteSelected = document.getElementById("deleteSelected");
+deleteSelected.addEventListener('click', function() {
+  document.getElementById("formMemorize").submit();
+
+
+
+  var nameValue = document.getElementById("uniqueID").value;
+
+  
   window.location.reload();
 });
 

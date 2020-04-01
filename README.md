@@ -4,7 +4,8 @@ Ideas:
 - reminder based on timer vs tabs opening
 - tags to group things to memorize
 - starter sets of things to memorize
-- Optional quiz format
+- Add more stuff to quiz feature
+- Make tag element a list so a notecard can have multiple tags
 
 # eecs497-project
 Chrome extension for help with memorization. (EECS 497 W2020)
