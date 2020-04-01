@@ -30,19 +30,22 @@ chrome.storage.sync.get({notecards : {}}, function(items) {
   }
   numMemorize.innerHTML = "You have " + numOfNotecards + " things to memorize";
 
-  var listHead = document.createElement("ul"); 
+  var listHead = document.createElement("div"); 
   listHead.setAttribute('class', 'reviewList');
 
   // give it some content
   for (let notecard of Object.values(notecards)) {
-    var newListElem = document.createElement("li");
+    var newListElem = document.createElement("input");
+    checkbox.type = 'checkbox';
+    checkbox.value = notecard.text;
     newListElem.setAttribute('class', 'listElem');
     newListElem.innerHTML = notecard.text;
-    console.log(notecard.text);
+    // console.log(notecard.text);
 
     // add the text node to the newly created div
     listHead.appendChild(newListElem);
   };
+  document.getElementById("listMemorize").appendChild(listHead);
 
   // add the newly created element and its content into the DOM 
   var resetButton = document.getElementById("resetButtonDiv");

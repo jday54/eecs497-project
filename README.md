@@ -8,6 +8,11 @@ change google chrome storage
 put in actual memorizer alert
 put in react
 
+- reminder based on timer vs tabs opening
+- tags to group things to memorize
+- starter sets of things to memorize
+- Optional quiz format
+
 # eecs497-project
 Chrome extension for help with memorization. (EECS 497 W2020)
 
@@ -16,6 +21,6 @@ https://superuser.com/questions/179347/can-i-add-right-click-options-in-google-c
 
 Note: this site seems helpful: https://thoughtbot.com/blog/how-to-make-a-chrome-extension
 
-Other helpul sites:
+Other helpful sites:
 - https://developer.chrome.com/extensions/samples#search:contextmenus
 - https://developer.chrome.com/extensions/contextMenus
