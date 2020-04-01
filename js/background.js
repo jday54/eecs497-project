@@ -78,7 +78,7 @@ chrome.tabs.onCreated.addListener(function() {
                 if ("quiz_prompt" in notecard) {
                     let user_answer = window.prompt(notecard.quiz_prompt,"your answer...");
                     if (user_answer != notecard.text) {
-                        alert("INCCORRECT :(")
+                        alert("INCCORRECT :(  Correct answer was:\n" + notecard.text)
                     }
                     else {
                         alert("CORRECT! :D")
