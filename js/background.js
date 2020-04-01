@@ -18,7 +18,16 @@ function onClickHandler(info) {
         chrome.storage.sync.get({notecards : {}}, function(result){
             let notecards = result.notecards;
             let add_date = new Date().getTime();
-            let notecard = {"text" : info.selectionText, "add_date" : add_date, "timer_multiplier" : 1, "last_reminder_date" : add_date};
+            let notecard = {
+                "text" : info.selectionText,
+                "add_date" : add_date,
+                "timer_multiplier" : 1,
+                "last_reminder_date" : add_date
+            };
+            if (window.confirm("Would you like to add a tag to your notecard?")) {
+                let tag_input = window.prompt("Please enter a tag", "tag...")
+                notecard["tag"] = tag_input
+            }
             notecards[add_date] = notecard;
             chrome.storage.sync.set({'notecards':notecards}, function() {
                 alert("You have selected \"" + notecard.text + "\" to memorize!");
