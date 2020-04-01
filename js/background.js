@@ -28,6 +28,10 @@ function onClickHandler(info) {
                 let tag_input = window.prompt("Please enter a tag", "tag...")
                 notecard["tag"] = tag_input
             }
+            if (window.confirm("Would you like to make a quiz for this reminder?")) {
+                let quiz_prompt = window.prompt("Please enter the question you would like to be prompted:", "Example: Who is the coolest EECS bro?")
+                notecard["quiz_prompt"] = quiz_prompt
+            }
             notecards[add_date] = notecard;
             chrome.storage.sync.set({'notecards':notecards}, function() {
                 alert("You have selected \"" + notecard.text + "\" to memorize!");
@@ -71,7 +75,18 @@ chrome.tabs.onCreated.addListener(function() {
             let current_date = new Date().getTime();
             if ((current_date - notecard.last_reminder_date) > threshold) {
                 updateNotecard(add_date);
-                alert("Reminder to memorize: " + notecard.text);
+                if ("quiz_prompt" in notecard) {
+                    let user_answer = window.prompt(notecard.quiz_prompt,"your answer...");
+                    if (user_answer != notecard.text) {
+                        alert("INCCORRECT :(")
+                    }
+                    else {
+                        alert("CORRECT! :D")
+                    }
+                }
+                else {
+                    alert("Reminder to memorize: " + notecard.text);
+                }
                 console.log("Reminder sent for: " + notecard.text);
             }
             else {
