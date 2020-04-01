@@ -1,12 +1,5 @@
-Need a background js to record selected text
-react/material theme 
+Ideas:
 
-keyboard command to record next thing
-
-split the js and css into different files
-change google chrome storage 
-put in actual memorizer alert
-put in react
 
 # eecs497-project
 Chrome extension for help with memorization. (EECS 497 W2020)
