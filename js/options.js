@@ -70,3 +70,9 @@ newThreshold.addEventListener('submit', function() {
   chrome.storage.sync.set({"threshold": newThresh * 60000});
   alert("You will be reminded every " + newThresh + " minute(s).")
 });
+
+let goToStarterTopicsPage = document.getElementById('starterTopicsButton');
+
+goToStarterTopicsPage.onclick = function(element) {
+  chrome.tabs.create({'url': "/starterTopics.html" } )
+};
