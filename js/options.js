@@ -33,6 +33,7 @@ chrome.storage.sync.get({notecards : {}}, function(items) {
   var form = document.getElementById("formMemorize"); 
 
   // give it some content
+  var count = 0;
   for (let notecard of Object.values(notecards)) {
     //create checkbox element
     var i = document.createElement("input");
@@ -47,6 +48,7 @@ chrome.storage.sync.get({notecards : {}}, function(items) {
     // add the text node to the newly created div
     form.append(i);
     form.append(l);
+    form.append(document.createElement("br"));
   };
 
   // add the newly created element and its content into the DOM 
@@ -60,17 +62,28 @@ resetButton.addEventListener('click', function() {
   window.location.reload();
 });
 
-var deleteSelected = document.getElementById("deleteSelected");
-deleteSelected.addEventListener('click', function() {
-  document.getElementById("formMemorize").submit();
+var deleteSelectedButton = document.getElementById("deleteSelected");
+deleteSelectedButton.addEventListener('click', function() {
+  chrome.storage.sync.get({notecards : {}}, function(items) {
+    var endNotecards = {}
+    let notecards = items.notecards;
+    
+    for (let notecard of Object.values(notecards)) {
+      // console.log(notecard)
+      var id = notecard.text + notecard.add_date
+      var get = document.getElementById(id);
+      if(get != null && !get.checked) {
+        endNotecards[notecard.add_date] = notecard
+      }
+    }
 
-
-
-  var nameValue = document.getElementById("uniqueID").value;
-
+    chrome.storage.sync.set({"notecards": endNotecards});
+    window.location.reload();
+  })
   
-  window.location.reload();
+  
 });
+
 
 chrome.storage.sync.get('threshold', function(items) {
   threshold = items.threshold
