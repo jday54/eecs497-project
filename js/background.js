@@ -29,7 +29,7 @@ function onClickHandler(info) {
                 notecard["tag"] = tag_input
             }
             if (window.confirm("Would you like to make a quiz for this reminder?")) {
-                let quiz_prompt = window.prompt("Please enter the question you would like to be prompted:", "Example: Who is the coolest EECS bro?")
+                let quiz_prompt = window.prompt("Please enter the question you would like to be prompted:", "Example: Who is the 5th president of the United States?")
                 notecard["quiz_prompt"] = quiz_prompt
             }
             notecards[add_date] = notecard;

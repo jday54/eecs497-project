@@ -69,19 +69,48 @@ deleteSelectedButton.addEventListener('click', function() {
     let notecards = items.notecards;
     
     for (let notecard of Object.values(notecards)) {
-      // console.log(notecard)
       var id = notecard.text + notecard.add_date
       var get = document.getElementById(id);
       if(get != null && !get.checked) {
-        endNotecards[notecard.add_date] = notecard
+        endNotecards[notecard.add_date] = notecard;
       }
     }
 
     chrome.storage.sync.set({"notecards": endNotecards});
     window.location.reload();
   })
-  
-  
+});
+
+var addTagsButton = document.getElementById("addTag");
+addTagsButton.addEventListener('submit', function() {
+  chrome.storage.sync.get({notecards : {}}, function(items) {
+    var endNotecards = {}
+    let notecards = items.notecards;
+    
+    for (let notecard of Object.values(notecards)) {
+      console.log(notecard)
+      var id = notecard.text + notecard.add_date
+      var get = document.getElementById(id);
+      if(get != null ) {
+        if (!get.checked) {
+          endNotecards[notecard.add_date] = notecard;
+        }
+        else {
+          notecard["tag"] = document.getElementById('newTag').value;
+          endNotecards[notecard.add_date] = notecard;
+        }
+      }
+    }
+    chrome.storage.sync.set({"notecards": endNotecards});
+  })
+});
+
+var printConsole = document.getElementById("printConsole");
+printConsole.addEventListener('click', function() {
+  chrome.storage.sync.get({notecards : {}}, function(items) {
+    let notecards = items.notecards;
+    console.log(notecards);
+  })
 });
 
 
