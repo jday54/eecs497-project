@@ -2,12 +2,13 @@ Ideas:
 
 
 
-TODO:
+IMMEDIATE TODO:
 - work on debugging report
 - starter sets of things to memorize
-- Add more stuff to quiz feature
-- display based on tags
+- Add more functionality to quiz feature
+- displaying items based on tags
 
+STRETCH TODO:
 - style checkboxes ??
 - reminder based on timer vs tabs opening ??
 - Make tag element a list so a notecard can have multiple tags ??
