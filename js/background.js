@@ -24,10 +24,10 @@ function onClickHandler(info) {
                 "timer_multiplier" : 1,
                 "last_reminder_date" : add_date
             };
-            if (window.confirm("Would you like to add a tag to your notecard?")) {
-                let tag_input = window.prompt("Please enter a tag", "tag...")
-                notecard["tag"] = tag_input
-            }
+            // if (window.confirm("Would you like to add a tag to your notecard?")) {
+            //     let tag_input = window.prompt("Please enter a tag", "tag...")
+            //     notecard["tag"] = tag_input
+            // }
             if (window.confirm("Would you like to make a quiz for this reminder?")) {
                 let quiz_prompt = window.prompt("Please enter the question you would like to be prompted:", "Example: Who is the 5th president of the United States?")
                 notecard["quiz_prompt"] = quiz_prompt
