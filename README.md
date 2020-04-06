@@ -1,11 +1,17 @@
 Ideas:
 
 
-- reminder based on timer vs tabs opening
-- tags to group things to memorize
+
+TODO:
+- work on debugging report
 - starter sets of things to memorize
 - Add more stuff to quiz feature
-- Make tag element a list so a notecard can have multiple tags
+- display based on tags
+
+- style checkboxes ??
+- reminder based on timer vs tabs opening ??
+- Make tag element a list so a notecard can have multiple tags ??
+
 
 https://stackoverflow.com/questions/20188792/is-there-any-way-to-insert-action-buttons-in-notification-in-google-chrome/20190702
 

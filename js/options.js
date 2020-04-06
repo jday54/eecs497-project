@@ -88,10 +88,10 @@ addTagsButton.addEventListener('submit', function() {
     let notecards = items.notecards;
     
     for (let notecard of Object.values(notecards)) {
-      console.log(notecard)
-      var id = notecard.text + notecard.add_date
+      console.log(notecard);
+      var id = notecard.text + notecard.add_date;
       var get = document.getElementById(id);
-      if(get != null ) {
+      if (get != null ) {
         if (!get.checked) {
           endNotecards[notecard.add_date] = notecard;
         }
@@ -102,7 +102,41 @@ addTagsButton.addEventListener('submit', function() {
       }
     }
     chrome.storage.sync.set({"notecards": endNotecards});
-  })
+  });
+});
+
+var addQuizButton = document.getElementById("addQuizPrompt");
+addQuizButton.addEventListener('submit', function() {
+  newQuizPrompt = document.getElementById('newQuizPrompt').value;
+  chrome.storage.sync.get({notecards : {}}, function(items) {
+    var endNotecards = {};
+    let notecards = items.notecards;
+
+    var count = 0;
+    for (let notecard of Object.values(notecards)) {
+      console.log(notecard);
+      var id = notecard.text + notecard.add_date;
+      var get = document.getElementById(id);
+      if (get != null) {
+        if (!get.checked) {
+          endNotecards[notecard.add_date] = notecard;
+        }
+        else {
+          notecard["quiz_prompt"] = newQuizPrompt;
+          endNotecards[notecard.add_date] = notecard;
+          ++count;
+        }
+      }
+    }
+
+    if (count > 1) {
+      if (!window.confirm("Are you sure you want to apply this question to multiple notecards?")) {
+        return;
+      }
+    }
+
+    chrome.storage.sync.set({"notecards": endNotecards});
+  });
 });
 
 var printConsole = document.getElementById("printConsole");
