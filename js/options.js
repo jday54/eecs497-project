@@ -30,6 +30,7 @@ chrome.storage.sync.get({notecards : {}}, function(items) {
   var form = document.getElementById("formMemorize"); 
 
   // give it some content
+  var count = 0;
   for (let notecard of Object.values(notecards)) {
     //create checkbox element
     var i = document.createElement("input");
@@ -60,17 +61,91 @@ resetButton.addEventListener('click', function() {
   window.location.reload();
 });
 
-var deleteSelected = document.getElementById("deleteSelected");
-deleteSelected.addEventListener('click', function() {
-  document.getElementById("formMemorize").submit();
+var deleteSelectedButton = document.getElementById("deleteSelected");
+deleteSelectedButton.addEventListener('click', function() {
+  chrome.storage.sync.get({notecards : {}}, function(items) {
+    var endNotecards = {}
+    let notecards = items.notecards;
+    
+    for (let notecard of Object.values(notecards)) {
+      var id = notecard.text + notecard.add_date
+      var get = document.getElementById(id);
+      if(get != null && !get.checked) {
+        endNotecards[notecard.add_date] = notecard;
+      }
+    }
 
-
-
-  var nameValue = document.getElementById("uniqueID").value;
-
-  
-  window.location.reload();
+    chrome.storage.sync.set({"notecards": endNotecards});
+    window.location.reload();
+  })
 });
+
+var addTagsButton = document.getElementById("addTag");
+addTagsButton.addEventListener('submit', function() {
+  chrome.storage.sync.get({notecards : {}}, function(items) {
+    var endNotecards = {}
+    let notecards = items.notecards;
+    
+    for (let notecard of Object.values(notecards)) {
+      console.log(notecard);
+      var id = notecard.text + notecard.add_date;
+      var get = document.getElementById(id);
+      if (get != null ) {
+        if (!get.checked) {
+          endNotecards[notecard.add_date] = notecard;
+        }
+        else {
+          notecard["tag"] = document.getElementById('newTag').value;
+          endNotecards[notecard.add_date] = notecard;
+        }
+      }
+    }
+    chrome.storage.sync.set({"notecards": endNotecards});
+  });
+});
+
+var addQuizButton = document.getElementById("addQuizPrompt");
+addQuizButton.addEventListener('submit', function() {
+  newQuizPrompt = document.getElementById('newQuizPrompt').value;
+  chrome.storage.sync.get({notecards : {}}, function(items) {
+    var endNotecards = {};
+    let notecards = items.notecards;
+
+    var count = 0;
+    for (let notecard of Object.values(notecards)) {
+      console.log(notecard);
+      var id = notecard.text + notecard.add_date;
+      var get = document.getElementById(id);
+      if (get != null) {
+        if (!get.checked) {
+          endNotecards[notecard.add_date] = notecard;
+        }
+        else {
+          notecard["quiz_prompt"] = newQuizPrompt;
+          endNotecards[notecard.add_date] = notecard;
+          ++count;
+        }
+      }
+    }
+
+    if (count > 1) {
+      if (!window.confirm("Are you sure you want to apply this question to multiple notecards?")) {
+        return;
+      }
+    }
+
+    chrome.storage.sync.set({"notecards": endNotecards});
+  });
+});
+
+var printConsole = document.getElementById("printConsole");
+printConsole.addEventListener('click', function() {
+  chrome.storage.sync.get({notecards : {}}, function(items) {
+    let notecards = items.notecards;
+    console.log(notecards);
+  })
+});
+
 
 chrome.storage.sync.get('threshold', function(items) {
   threshold = items.threshold
