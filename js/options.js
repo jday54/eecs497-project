@@ -138,13 +138,13 @@ addQuizButton.addEventListener('submit', function() {
   });
 });
 
-var printConsole = document.getElementById("printConsole");
-printConsole.addEventListener('click', function() {
-  chrome.storage.sync.get({notecards : {}}, function(items) {
-    let notecards = items.notecards;
-    console.log(notecards);
-  })
-});
+// var printConsole = document.getElementById("printConsole");
+// printConsole.addEventListener('click', function() {
+//   chrome.storage.sync.get({notecards : {}}, function(items) {
+//     let notecards = items.notecards;
+//     console.log(notecards);
+//   })
+// });
 
 
 chrome.storage.sync.get('threshold', function(items) {
@@ -160,7 +160,6 @@ newThreshold.addEventListener('submit', function() {
 });
 
 let goToStarterTopicsPage = document.getElementById('starterTopicsButton');
-
 goToStarterTopicsPage.onclick = function(element) {
   chrome.tabs.create({'url': "/starterTopics.html" } )
 };
