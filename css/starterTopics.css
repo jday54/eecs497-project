@@ -1,0 +1,35 @@
+.main {
+    width: 100%;
+    margin: auto;
+}
+
+.header {
+    font-family: roboto;
+    font-size: 36px;
+    font-weight: 300;
+    width: 50%;
+    text-align: center;
+    vertical-align: middle;
+    margin: auto;
+    margin-top: 2%;
+}
+
+.topicDiv {
+    width: 30%;
+    height: 10%;
+    margin: auto;
+    margin-top: 4%;
+    text-align: center;
+}
+
+.topicName {
+    font-family: roboto;
+    font-size: 20px;
+    margin-right: 25%;
+}
+
+.topicName2 {
+    font-family: roboto;
+    font-size: 20px;
+    margin-right: 23%;
+}

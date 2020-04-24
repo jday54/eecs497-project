@@ -22,8 +22,8 @@
 
         <div id="numMemorize" class="numMemorizeBox">
         </div>
-
-        <div id="formContainer" class="numMemorizeBox">
+<!--onsubmit="deleteSelected()"-->
+        <div id="formContainer" class="numMemorizeBox"  >
           <form method="POST" id="formMemorize">
             
           </form>
@@ -33,11 +33,34 @@
           <button id="resetButton" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
             Delete All
           </button>
-          <button id="deleteSelected" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" form="formMemorize">
+          <!-- form="formMemorize" -->
+          <button id="deleteSelected" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" >
             Delete Selected
           </button>
-
         </div>
+        
+        <div class="thresholdBox">
+          <form id="addTag" action="">
+            <div>
+              Add a tag to selected items:
+            </div>
+            <input type="text" id="newTag" value="" class="mdl-textfield__input">
+            <br>
+            <input type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" value="Add">
+          </form> 
+        </div>
+
+        <div class="thresholdBox">
+          <form id="addQuizPrompt" action="">
+            <div>
+              Add a quiz question to selected item:
+            </div>
+            <input type="text" id="newQuizPrompt" value="" class="mdl-textfield__input">
+            <br>
+            <input type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" value="Add">
+          </form> 
+        </div>
+
         <div class="thresholdBox">
           <form id="changeThreshold" action="">
             <div>

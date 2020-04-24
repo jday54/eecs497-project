@@ -1,6 +1,3 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-
 let page = document.getElementById('buttonDiv');
 
 // const kButtonColors = ['#3aa757', '#e8453c', '#f9bb2d', '#4688f1'];
@@ -39,14 +36,17 @@ chrome.storage.sync.get({notecards : {}}, function(items) {
     i.type = "checkbox";
     i.value = notecard.text;
     i.id = notecard.text + notecard.add_date.toString();
+    i.className = "listCheckbox";
 
     var l = document.createElement("l");
     l.for = notecard.text + notecard.add_date.toString();
     l.innerHTML = notecard.text;
+    l.className = "listText";
 
     // add the text node to the newly created div
     form.append(i);
     form.append(l);
+    form.append(document.createElement("br"));
   };
 
   // add the newly created element and its content into the DOM 
